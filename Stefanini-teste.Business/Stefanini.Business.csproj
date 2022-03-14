@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PDV.DAO\PDV.DAO.csproj" />
-    <ProjectReference Include="..\PDV.Model\PDV.Model.csproj" />
     <ProjectReference Include="..\Stefanini-teste.DAO\Stefanini.DAO.csproj" />
     <ProjectReference Include="..\Stefanini-teste.Model\Stefanini.Model.csproj" />
   </ItemGroup>

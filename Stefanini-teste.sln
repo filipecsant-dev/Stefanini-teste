@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stefanini.WEB", "Stefanini-teste\Stefanini.WEB.csproj", "{57E5E778-D052-4B97-A00C-BB98EC5EE61E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1726F5B-73F7-460A-9E89-E4B15F44BEBC} = {C1726F5B-73F7-460A-9E89-E4B15F44BEBC}
+		{9EC3456C-3190-4227-9F50-ACE7DE32D2BE} = {9EC3456C-3190-4227-9F50-ACE7DE32D2BE}
+		{A8B590C7-10E5-4692-B32C-E29EDF94B416} = {A8B590C7-10E5-4692-B32C-E29EDF94B416}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stefanini.Business", "Stefanini-teste.Business\Stefanini.Business.csproj", "{A8B590C7-10E5-4692-B32C-E29EDF94B416}"
 EndProject
