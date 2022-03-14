@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Stefanini.Model.Entities
 {
     [Table("Cidade")]
-    public class CidadeDTO
+    public class CidadeDTO : Disable
     {
         [Key]
         public int CodCidade { get; set; }
