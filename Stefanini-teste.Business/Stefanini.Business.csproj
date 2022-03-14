@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PDV.DAO\PDV.DAO.csproj" />
+    <ProjectReference Include="..\PDV.Model\PDV.Model.csproj" />
+    <ProjectReference Include="..\Stefanini-teste.DAO\Stefanini.DAO.csproj" />
+    <ProjectReference Include="..\Stefanini-teste.Model\Stefanini.Model.csproj" />
+  </ItemGroup>
+
+</Project>
