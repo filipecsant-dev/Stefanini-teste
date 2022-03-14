@@ -23,11 +23,14 @@ namespace Stefanini.DAO.Migrations
 
             modelBuilder.Entity("Stefanini.Model.Entities.CidadeDTO", b =>
                 {
-                    b.Property<int>("CodCidade")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodCidade"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -36,35 +39,32 @@ namespace Stefanini.DAO.Migrations
 
                     b.Property<string>("UF")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
-                    b.HasKey("CodCidade");
+                    b.HasKey("Id");
 
                     b.ToTable("Cidade");
                 });
 
             modelBuilder.Entity("Stefanini.Model.Entities.PessoaDTO", b =>
                 {
-                    b.Property<int>("CodPessoa")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodPessoa"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CPF")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
-                    b.Property<int>("CidadeCodCidade")
+                    b.Property<int>("CidadeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CodCidade")
+                    b.Property<int>("Id_Cidade")
                         .HasColumnType("int");
-
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
 
                     b.Property<int>("Idade")
                         .HasColumnType("int");
@@ -77,9 +77,9 @@ namespace Stefanini.DAO.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.HasKey("CodPessoa");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CidadeCodCidade");
+                    b.HasIndex("CidadeId");
 
                     b.ToTable("Pessoa");
                 });
@@ -88,7 +88,7 @@ namespace Stefanini.DAO.Migrations
                 {
                     b.HasOne("Stefanini.Model.Entities.CidadeDTO", "Cidade")
                         .WithMany()
-                        .HasForeignKey("CidadeCodCidade")
+                        .HasForeignKey("CidadeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

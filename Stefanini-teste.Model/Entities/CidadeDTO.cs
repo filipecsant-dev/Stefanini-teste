@@ -12,11 +12,11 @@ namespace Stefanini.Model.Entities
     public class CidadeDTO : Disable
     {
         [Key]
-        public int CodCidade { get; set; }
+        public int Id { get; set; }
         [MaxLength(200)]
         [Required]
         public string Nome { get; set; }
-        [MaxLength(20)]
+        [MaxLength(2)]
         [Required]
         public string UF { get; set; }
     }

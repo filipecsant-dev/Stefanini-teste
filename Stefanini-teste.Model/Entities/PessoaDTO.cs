@@ -12,7 +12,7 @@ namespace Stefanini.Model.Entities
     public class PessoaDTO : Disable
     {
         [Key]
-        public int CodPessoa { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(300)]
         [Required]
@@ -23,7 +23,7 @@ namespace Stefanini.Model.Entities
         public string CPF { get; set; }
 
         [Required]
-        public int CodCidade { get; set; }
+        public int Id_Cidade { get; set; }
         public CidadeDTO Cidade { get; set; }
 
         [Required]

@@ -9,6 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Collection" Version="7.0.1" />
+    <PackageReference Include="AutoMapper.Collection.EntityFrameworkCore" Version="7.1.3" />
+    <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="AutoMapper.Data" Version="6.0.0" />
+    <PackageReference Include="AutoMapper.EF6" Version="2.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="5.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
@@ -25,11 +31,8 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Stefanini-teste.Business\Stefanini.Business.csproj" />
 		<ProjectReference Include="..\Stefanini-teste.DAO\Stefanini.DAO.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="AutoMapper\" />
 	</ItemGroup>
 	
 </Project>

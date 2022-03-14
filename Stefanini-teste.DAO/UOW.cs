@@ -51,6 +51,12 @@ namespace Stefanini.DAO
 
         //
 
+        private PessoaRepository _pessoaRepository;
+        public PessoaRepository PessoaRepository => _pessoaRepository ??= new PessoaRepository(_context);
+
+        private CidadeRepository _cidadeRepository;
+        public CidadeRepository CidadeRepository => _cidadeRepository ??= new CidadeRepository(_context);
+
 
 
     }
