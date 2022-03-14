@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Stefanini.Model.Entities;
 
 namespace Stefanini.DAO
 {
@@ -11,7 +12,8 @@ namespace Stefanini.DAO
 
         public StefaniniContext(DbContextOptions<StefaniniContext> options) : base(options) {  }
 
-        
+        public DbSet<PessoaDTO> Pessoa { get; set; }
+        public DbSet<CidadeDTO> Cidade { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
