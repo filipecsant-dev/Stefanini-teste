@@ -60,9 +60,6 @@ namespace Stefanini.DAO.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
-                    b.Property<int>("CidadeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_Cidade")
                         .HasColumnType("int");
 
@@ -79,7 +76,7 @@ namespace Stefanini.DAO.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CidadeId");
+                    b.HasIndex("Id_Cidade");
 
                     b.ToTable("Pessoa");
                 });
@@ -88,7 +85,7 @@ namespace Stefanini.DAO.Migrations
                 {
                     b.HasOne("Stefanini.Model.Entities.CidadeDTO", "Cidade")
                         .WithMany()
-                        .HasForeignKey("CidadeId")
+                        .HasForeignKey("Id_Cidade")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

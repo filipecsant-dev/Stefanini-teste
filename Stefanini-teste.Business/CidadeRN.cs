@@ -16,7 +16,7 @@ namespace Stefanini.Business
             try
             {
                 bool result = false;
-                var consult = FindOne(x => x.Nome == _cidade.Nome && x.UF == _cidade.UF);
+                var consult = FindOne(x => x.Nome == _cidade.Nome && x.UF == _cidade.UF && x.IsDisabled == false);
                 
                 if(consult == null)
                 {
@@ -67,7 +67,7 @@ namespace Stefanini.Business
             try
             {
                 bool result = false;
-                var consult = FindOne(x => x.Id == _cidade.Id);
+                var consult = FindOne(x => x.Id == _cidade.Id && x.IsDisabled == false);
 
                 if (consult != null)
                 {
@@ -108,7 +108,7 @@ namespace Stefanini.Business
             {
                 using (var uow = new UOW())
                 {
-                    return uow.CidadeRepository.GetAll();
+                    return uow.CidadeRepository.GetAll(x => x.IsDisabled == false);
                     
                 }
                

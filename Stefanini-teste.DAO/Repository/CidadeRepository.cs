@@ -16,7 +16,5 @@ namespace Stefanini.DAO.Repository
             _context = (StefaniniContext)Context;
         }
 
-
-
     }
 }

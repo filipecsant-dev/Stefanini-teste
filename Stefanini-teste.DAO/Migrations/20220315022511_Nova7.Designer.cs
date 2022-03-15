@@ -11,8 +11,8 @@ using Stefanini.DAO;
 namespace Stefanini.DAO.Migrations
 {
     [DbContext(typeof(StefaniniContext))]
-    [Migration("20220314203716_nova2")]
-    partial class nova2
+    [Migration("20220315022511_Nova7")]
+    partial class Nova7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,9 +62,6 @@ namespace Stefanini.DAO.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
-                    b.Property<int>("CidadeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_Cidade")
                         .HasColumnType("int");
 
@@ -81,7 +78,7 @@ namespace Stefanini.DAO.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CidadeId");
+                    b.HasIndex("Id_Cidade");
 
                     b.ToTable("Pessoa");
                 });
@@ -90,7 +87,7 @@ namespace Stefanini.DAO.Migrations
                 {
                     b.HasOne("Stefanini.Model.Entities.CidadeDTO", "Cidade")
                         .WithMany()
-                        .HasForeignKey("CidadeId")
+                        .HasForeignKey("Id_Cidade")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

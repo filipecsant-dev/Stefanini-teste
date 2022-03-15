@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Stefanini.Model.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,6 +24,7 @@ namespace Stefanini.Model.Entities
         public string CPF { get; set; }
 
         [Required]
+        [ForeignKey("Cidade")]
         public int Id_Cidade { get; set; }
         public CidadeDTO Cidade { get; set; }
 

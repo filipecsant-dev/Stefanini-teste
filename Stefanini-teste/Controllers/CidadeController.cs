@@ -72,7 +72,7 @@ namespace Stefanini_teste.Controllers
         {
             try
             {
-                var result = CidadeRN.FindOne(x => x.Id == id);
+                var result = CidadeRN.FindOne(x => x.Id == id && x.IsDisabled == false);
 
                 if (result != null)
                     return Ok(result);
@@ -91,7 +91,7 @@ namespace Stefanini_teste.Controllers
         {
             try
             {
-                var existe = CidadeRN.FindOne(x => x.Id == id);
+                var existe = CidadeRN.FindOne(x => x.Id == id && x.IsDisabled == false);
                 if(existe != null)
                 {
                     CidadeRN.Delete(id);

@@ -16,5 +16,14 @@ namespace Stefanini.Model.ViewModel
         [Required(ErrorMessage = "Necessário informar o Estado.")]
         public string UF { get; set; }
     }
+
+    public class CidadeReadVM
+    {
+        public int Id { get; set; }
+
+        public string Nome { get; set; }
+
+        public string UF { get; set; }
+    }
 }
 
