@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stefanini.DAO", "Stefanini-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stefanini.Model", "Stefanini-teste.Model\Stefanini.Model.csproj", "{C1726F5B-73F7-460A-9E89-E4B15F44BEBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stefanini.WEB", "Stefanini.WEB\Stefanini.WEB.csproj", "{6101AFE1-E1E9-4667-9C5A-52C4942C50C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stefanini.WEB", "Stefanini.WEB\Stefanini.WEB.csproj", "{AD34DEB3-FB9C-4F98-B6A5-EB8BDF1E1B68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +40,10 @@ Global
 		{C1726F5B-73F7-460A-9E89-E4B15F44BEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1726F5B-73F7-460A-9E89-E4B15F44BEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1726F5B-73F7-460A-9E89-E4B15F44BEBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6101AFE1-E1E9-4667-9C5A-52C4942C50C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6101AFE1-E1E9-4667-9C5A-52C4942C50C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6101AFE1-E1E9-4667-9C5A-52C4942C50C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6101AFE1-E1E9-4667-9C5A-52C4942C50C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD34DEB3-FB9C-4F98-B6A5-EB8BDF1E1B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD34DEB3-FB9C-4F98-B6A5-EB8BDF1E1B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD34DEB3-FB9C-4F98-B6A5-EB8BDF1E1B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD34DEB3-FB9C-4F98-B6A5-EB8BDF1E1B68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
