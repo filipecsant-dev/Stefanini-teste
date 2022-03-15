@@ -1,5 +1,3 @@
-using Stefanini.DAO;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
