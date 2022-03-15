@@ -102,14 +102,18 @@ namespace Stefanini.Business
         }
 
 
-        public static IEnumerable<CidadeDTO> ReadAll()
+        public static ResponseGetVM ReadAll()
         {
             try
             {
                 using (var uow = new UOW())
                 {
-                    return uow.CidadeRepository.GetAll(x => x.IsDisabled == false);
-                    
+                    var dados = uow.CidadeRepository.GetAll(x => x.IsDisabled == false);
+
+                    return new ResponseGetVM
+                    {
+                        dados = dados
+                    };
                 }
                
             }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Stefanini.Business;
 using Stefanini.Model.Entities;
@@ -8,6 +9,7 @@ namespace Stefanini_teste.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("ImplementionCors")]
     public class CidadeController : Controller
     {
         private readonly IMapper _mapper;
@@ -71,10 +73,10 @@ namespace Stefanini_teste.Controllers
         {
             try
             {
-                var result = CidadeRN.FindOne(x => x.Id == id && x.IsDisabled == false);
+                var dados = CidadeRN.FindOne(x => x.Id == id && x.IsDisabled == false);
 
-                if (result != null)
-                    return Ok(result);
+                if (dados != null)
+                    return Ok(new ResponseGetOneVM { dados = dados });
                 else
                     return BadRequest("Cidade não encontrada.");
             }

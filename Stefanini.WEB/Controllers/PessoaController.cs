@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Stefanini.Business;
 using Stefanini.Model.Entities;
@@ -8,6 +9,7 @@ namespace Stefanini_teste.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("ImplementionCors")]
     public class PessoaController : Controller
     {
 
@@ -51,7 +53,23 @@ namespace Stefanini_teste.Controllers
 
         }
 
-
+        /// <summary>
+        ///    { 
+        ///       "dados": [
+        ///         {
+        ///             "id": 0,
+        ///             "nome": "nome",
+        ///             "cpf": "999.999.999-99",
+        ///             "idade": 0,
+        ///             "cidade":
+        ///                 "id": 0,
+        ///                 "nome": "nome",
+        ///                 "uf": "uf"
+        ///         }
+        ///       ]
+        ///     }
+        /// </summary>
+        /// <response code="200">Requisição bem sucedida.</response>
         [HttpGet]
         public IActionResult ReadAll()
         {
@@ -71,10 +89,10 @@ namespace Stefanini_teste.Controllers
         {
             try
             {
-                var result = PessoaRN.ReadOne(id);
+                var dados = PessoaRN.ReadOne(id);
 
-                if (result != null)
-                    return Ok(result);
+                if (dados != null)
+                    return Ok(new ResponseGetOneVM { dados = dados });
                 else
                     return BadRequest("Pessoa não encontrada.");
             }

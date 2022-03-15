@@ -103,14 +103,18 @@ namespace Stefanini.Business
         }
 
 
-        public static List<PessoaReadVM> ReadAll()
+        public static ResponseGetVM ReadAll()
         {
             try
             {
                 using (var uow = new UOW())
                 {
-                    return uow.PessoaRepository.ReadAll();
+                    var dados = uow.PessoaRepository.ReadAll();
 
+                    return new ResponseGetVM
+                    {
+                        dados = dados
+                    };
                 }
 
             }
@@ -126,7 +130,7 @@ namespace Stefanini.Business
             {
                 using (var uow = new UOW())
                 {
-                    return uow.PessoaRepository.ReadOne(id);
+                   return uow.PessoaRepository.ReadOne(id);
 
                 }
 
