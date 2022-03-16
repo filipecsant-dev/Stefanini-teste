@@ -51,10 +51,16 @@ export class CidadeComponent implements OnInit, OnDestroy {
     }
 
 
-    this.service.cadastrarcidade(this.cidade).subscribe((res: any) => {
-      location.reload();
+    this.service.cadastrarcidade(this.cidade)
+      .subscribe(
+        () => { },
 
-    });
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        },
+
+        () => { location.reload(); }
+      );
   }
 
   deletar(id: number): void {

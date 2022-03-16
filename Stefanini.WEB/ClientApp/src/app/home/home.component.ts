@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../service';
 import { Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -51,47 +52,54 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   cadastrarpessoa() {
-    if (this.pessoa.nome.length > 300) {
-      this.error = [{ erro: "Nome muito longo!" }];
-      return;
-    }
-    if (this.pessoa.nome.length < 5) {
-      this.error = [{ erro: "Nome muito curto." }];
-      return;
-    }
-    if (this.pessoa.cpf.length != 11) {
-      this.error = [{ erro: "CPF inválido!" }];
-      return;
-    }
-    if (this.pessoa.idade < 1) {
-      this.error = [{ erro: "Informe um idade válida!" }];
-      return;
-    }
-    if (this.pessoa.cidade.uf == "") {
-      this.error = [{ erro: "Informe o Estado" }];
-      return;
-    }
-    if (this.pessoa.cidade.nome == "") {
-      this.error = [{ erro: "Informe a Cidade" }];
-      return;
-    }
+      if (this.pessoa.nome.length > 300) {
+        this.error = [{ erro: "Nome muito longo!" }];
+        return;
+      }
+      if (this.pessoa.nome.length < 5) {
+        this.error = [{ erro: "Nome muito curto." }];
+        return;
+      }
+      if (this.pessoa.cpf.length != 11) {
+        this.error = [{ erro: "CPF inválido!" }];
+        return;
+      }
+      if (this.pessoa.idade < 1) {
+        this.error = [{ erro: "Informe um idade válida!" }];
+        return;
+      }
+      if (this.pessoa.idade > 120) {
+        this.error = [{ erro: "Informe um idade válida!" }];
+        return;
+      }
+      if (this.pessoa.cidade.uf == "") {
+        this.error = [{ erro: "Informe o Estado" }];
+        return;
+      }
+      if (this.pessoa.cidade.nome == "") {
+        this.error = [{ erro: "Informe a Cidade" }];
+        return;
+      }
 
-    this.error = [];
+      this.error = [];
 
-    this.service.cadastrarpessoa(this.pessoa).subscribe((res) => {
-      location.reload();
-    });
-  }
+    this.service.cadastrarpessoa(this.pessoa)
+      .subscribe(
+        () => { },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        },
+
+        () => { location.reload(); }
+      );
+    
+    }
 
   deletar(id: number): void {
     this.service.deletarpessoa(id).subscribe(() => {
       location.reload();
       
-    }, (err) => {
-      console.log(err.error);
-      this.error = err.message;
-      // In this block you get your error message
-      // as "Failed to create new user"
     });
   }
 
