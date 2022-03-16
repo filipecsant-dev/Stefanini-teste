@@ -32,12 +32,16 @@
 
       <div style="margin-left: 5%; width: 30%;">
         <label><small>Estado</small></label>
-        <input type="text" class="form-control" placeholder="Insira o Estado.." name="pessoa.cidade.u" [(ngModel)]="pessoa.cidade.uf" required>
+        <select name="pessoa.cidade.uf" [(ngModel)]="pessoa.cidade.uf" class="form-control" (change)="exibeCidades()">
+          <option *ngFor="let e of estados" [value]="e.uf">{{e.uf}}</option>
+        </select>
       </div>
 
       <div style="margin-left: 5%; width: 30%;">
         <label><small>Cidade</small></label>
-        <input type="text" class="form-control" placeholder="Insira a cidade.." name="pessoa.cidade.nome" [(ngModel)]="pessoa.cidade.nome" required>
+        <select name="pessoa.cidade.nome" [(ngModel)]="pessoa.cidade.nome"  class="form-control">
+          <option *ngFor="let c of cidades" [value]="c.nome">{{c.nome}}</option>
+        </select>
       </div>
 
     </div>

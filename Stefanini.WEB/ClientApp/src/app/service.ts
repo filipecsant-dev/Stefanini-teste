@@ -60,4 +60,8 @@ export class AppService {
     return this.http.put(`${this.cidadeurl}/${id}`, cidade);
   }
 
+  carregarcidades(id: string) {
+    return this.http.get<any>(`${this.cidadeurl}/carregarcidades/${id}`);
+  }
+
 }

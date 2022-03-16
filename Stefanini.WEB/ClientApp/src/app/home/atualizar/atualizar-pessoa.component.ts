@@ -11,6 +11,9 @@ export class AtualizarPessoaComponent implements OnInit {
   constructor(private service: AppService, private activatedRouter: ActivatedRoute) { }
 
   error: any[] = [];
+  cidades: any[] = [];
+  estados: any[] = [];
+  estado = null;
   pessoa: Pessoa = {
     nome: "",
     idade: 0,
@@ -29,6 +32,12 @@ export class AtualizarPessoaComponent implements OnInit {
     this.service.buscarpessoa(id)
       .subscribe((res: any) => {
         this.pessoa = res.dados;
+      });
+
+    this.service.listarcidades()
+      .subscribe((res: any) => {
+        this.estados = res.dados;
+        this.cidades = res.dados;
       });
   }
 
@@ -49,12 +58,29 @@ export class AtualizarPessoaComponent implements OnInit {
       this.error = [{ erro: "Informe um idade válida!" }];
       return;
     }
+    if (this.pessoa.cidade.uf == "") {
+      this.error = [{ erro: "Informe o Estado" }];
+      return;
+    }
+    if (this.pessoa.cidade.nome == "") {
+      this.error = [{ erro: "Informe a Cidade" }];
+      return;
+    }
 
-    console.log(this.pessoa);
+    this.error = [];
+
     this.service.atualizarpessoa(this.meuid, this.pessoa).subscribe((res) => {
       location.reload();
       
     });
+  }
+
+  exibeCidades() {
+    this.service.carregarcidades(this.pessoa.cidade.uf)
+      .subscribe((res: any) => {
+        this.cidades = res;
+      });
+
   }
 }
 

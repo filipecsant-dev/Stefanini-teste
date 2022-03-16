@@ -68,6 +68,21 @@ namespace Stefanini_teste.Controllers
             }
         }
 
+        [HttpGet("carregarcidades/{uf}")]
+        //Read
+        public IActionResult ReadAll(string uf)
+        {
+            try
+            {
+                var result = CidadeRN.Get(x => x.UF == uf && x.IsDisabled == false);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [HttpGet("{id:int}")]
         public IActionResult ReadOne(int id)
         {

@@ -12,6 +12,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   data: any[] = [];
   showList = true;
   error: any[] = [];
+  cidades: any[] = [];
+  estados: any[] = [];
+  estado = null;
   pessoa: Pessoa = {
     nome: "",
     idade: 0,
@@ -40,6 +43,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.data = res.dados;
         this.dtTrigger.next();
       });
+
+    this.service.listarcidades()
+      .subscribe((res: any) => {
+        this.estados = res.dados;
+      });
   }
 
   cadastrarpessoa() {
@@ -59,7 +67,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.error = [{ erro: "Informe um idade válida!" }];
       return;
     }
-    
+    if (this.pessoa.cidade.uf == "") {
+      this.error = [{ erro: "Informe o Estado" }];
+      return;
+    }
+    if (this.pessoa.cidade.nome == "") {
+      this.error = [{ erro: "Informe a Cidade" }];
+      return;
+    }
+
+    this.error = [];
 
     this.service.cadastrarpessoa(this.pessoa).subscribe((res) => {
       location.reload();
@@ -70,7 +87,20 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.service.deletarpessoa(id).subscribe(() => {
       location.reload();
       
+    }, (err) => {
+      console.log(err.error);
+      this.error = err.message;
+      // In this block you get your error message
+      // as "Failed to create new user"
     });
+  }
+
+  exibeCidades() {
+    this.service.carregarcidades(this.pessoa.cidade.uf)
+      .subscribe((res: any) => {
+        this.cidades = res;
+      });
+   
   }
 
 
