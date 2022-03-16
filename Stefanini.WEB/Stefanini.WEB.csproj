@@ -42,14 +42,18 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Compile Remove="ClientApp\src\app\fetch-data\**" />
+    <Compile Remove="Pages\**" />
     <Compile Remove="wwwroot\css\**" />
     <Content Remove="$(SpaRoot)**" />
     <Content Remove="ClientApp\src\app\fetch-data\**" />
+    <Content Remove="Pages\**" />
     <Content Remove="wwwroot\css\**" />
     <EmbeddedResource Remove="ClientApp\src\app\fetch-data\**" />
+    <EmbeddedResource Remove="Pages\**" />
     <EmbeddedResource Remove="wwwroot\css\**" />
     <None Remove="$(SpaRoot)**" />
     <None Remove="ClientApp\src\app\fetch-data\**" />
+    <None Remove="Pages\**" />
     <None Remove="wwwroot\css\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
