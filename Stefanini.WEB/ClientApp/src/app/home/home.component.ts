@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AppService } from '../service';
+import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -7,23 +8,25 @@ import { Subject } from 'rxjs';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  dtOptions: DataTables.Settings = {};
-  dtTrigger = new Subject();
+  public dtOptions: DataTables.Settings = {};
+  public dtTrigger: Subject<any> = new Subject<any>();
   public data: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: AppService) { }
 
   ngOnInit(): void {
+
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 10,
+      language: { url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json' },
+      processing: true
     };
 
-    this.http.get('https://localhost:7030/api/pessoa')
+    this.service.listarpessoas()
       .subscribe((res: any) => {
         this.data = res.dados;
         this.dtTrigger.next();
-        console.log(res);
       });
   }
 
@@ -32,10 +35,3 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
 }
-
-interface Pessoa {
-  nome: string;
-  cpf: string;
-  idade: number;
-
-};

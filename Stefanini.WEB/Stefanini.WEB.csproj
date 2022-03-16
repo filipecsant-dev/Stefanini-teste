@@ -41,8 +41,12 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="wwwroot\css\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="wwwroot\css\**" />
+    <EmbeddedResource Remove="wwwroot\css\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="wwwroot\css\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -52,8 +56,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
+    <Folder Include="ClientApp\src\assets\NewFolder\" />
+    <Folder Include="wwwroot\Content\" />
+    <Folder Include="wwwroot\Scripts\" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
