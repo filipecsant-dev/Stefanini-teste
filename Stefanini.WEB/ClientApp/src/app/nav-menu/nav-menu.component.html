@@ -1,9 +1,9 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3"  style="background-color: #2196f3; color: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 30%);"
   >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Stefanini.WEB</a>
+    <div class="container" >
+      <a class="navbar-brand" [routerLink]="['/']" style="color: #fff;">Teste Stefanini</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -19,22 +19,17 @@
         class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
         [ngClass]="{ show: isExpanded }"
       >
-        <ul class="navbar-nav flex-grow">
+        <ul class="navbar-nav flex-grow" >
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link" [routerLink]="['/']" style="color: #fff;">Pessoa</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
+            <a class="nav-link" [routerLink]="['/cidade']" style="color: #fff;"
+              >Cidade</a
             >
           </li>
         </ul>
