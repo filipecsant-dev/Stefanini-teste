@@ -24,7 +24,7 @@
 - [x] Alteração
 - [x] Exclusão
 - [x] Listagem 
-- [x] Paginação (DataTable) 
+- [x] Paginação
 - [x] Filtragem
 <br /><br />
 
