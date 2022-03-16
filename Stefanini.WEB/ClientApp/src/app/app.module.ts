@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AtualizarPessoaComponent } from './home/atualizar/atualizar-pessoa.component';
 import { CidadeComponent } from './cidade/cidade.component';
 import { AtualizarCidadeComponent } from './cidade/atualizar/atualizar-cidade.component';
@@ -22,7 +21,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
     AtualizarPessoaComponent,
     CidadeComponent,
     AtualizarCidadeComponent
@@ -35,7 +33,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SweetAlert2Module.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'pessoa/atualizar/:id', component: AtualizarPessoaComponent },
       { path: 'cidade', component: CidadeComponent },
       { path: 'cidade/atualizar/:id', component: AtualizarCidadeComponent },

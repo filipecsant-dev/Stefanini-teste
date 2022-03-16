@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   dtTrigger: Subject<any> = new Subject<any>();
   data: any[] = [];
   showList = true;
+  error2: any[] = [];
   error: any[] = [];
   cidades: any[] = [];
   estados: any[] = [];
@@ -40,15 +41,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     };
 
     this.service.listarpessoas()
-      .subscribe((res: any) => {
-        this.data = res.dados;
-        this.dtTrigger.next();
-      });
+      .subscribe(
+        (res: any) => {
+          this.data = res.dados;
+          this.dtTrigger.next();
+        },
+
+        (erro) => {
+          this.error2 = [{ erro: erro.error }];
+        }
+      );
 
     this.service.listarcidades()
-      .subscribe((res: any) => {
-        this.estados = res.dados;
-      });
+      .subscribe(
+        (res: any) => { this.estados = res.dados; },
+
+        (erro) => {
+          this.error2 = [{ erro: erro.error }];
+        }
+      );
   }
 
   cadastrarpessoa() {
@@ -97,17 +108,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
   deletar(id: number): void {
-    this.service.deletarpessoa(id).subscribe(() => {
-      location.reload();
-      
-    });
+    this.service.deletarpessoa(id)
+      .subscribe(
+        () => { },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        },
+
+        () => { location.reload(); }
+      );
   }
 
   exibeCidades() {
     this.service.carregarcidades(this.pessoa.cidade.uf)
-      .subscribe((res: any) => {
-        this.cidades = res;
-      });
+      .subscribe(
+        (res: any) => { this.cidades = res; },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        }
+      );
    
   }
 

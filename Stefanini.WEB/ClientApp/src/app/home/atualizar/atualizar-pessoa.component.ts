@@ -30,15 +30,25 @@ export class AtualizarPessoaComponent implements OnInit {
     const id = Number(this.activatedRouter.snapshot.paramMap.get('id'));
 
     this.service.buscarpessoa(id)
-      .subscribe((res: any) => {
-        this.pessoa = res.dados;
-      });
+      .subscribe(
+        (res: any) => { this.pessoa = res.dados; },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        }
+      );
 
     this.service.listarcidades()
-      .subscribe((res: any) => {
-        this.estados = res.dados;
-        this.cidades = res.dados;
-      });
+      .subscribe(
+        (res: any) => {
+          this.estados = res.dados;
+          this.cidades = res.dados;
+        },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        }
+      );
   }
 
   atualizarpessoa() {
@@ -69,17 +79,27 @@ export class AtualizarPessoaComponent implements OnInit {
 
     this.error = [];
 
-    this.service.atualizarpessoa(this.meuid, this.pessoa).subscribe((res) => {
-      location.reload();
-      
-    });
+    this.service.atualizarpessoa(this.meuid, this.pessoa)
+      .subscribe(
+        () => { },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        },
+
+        () => { location.reload(); }
+      );
   }
 
   exibeCidades() {
     this.service.carregarcidades(this.pessoa.cidade.uf)
-      .subscribe((res: any) => {
-        this.cidades = res;
-      });
+      .subscribe(
+        (res: any) => { this.cidades = res; },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        }
+      );
 
   }
 }

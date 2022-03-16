@@ -10,6 +10,7 @@ export class CidadeComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   data: any[] = [];
+  error2: any[] = [];
   error: any[] = [];
   showList = true;
   cidade: Cidade = {
@@ -29,10 +30,16 @@ export class CidadeComponent implements OnInit, OnDestroy {
     };
 
     this.service.listarcidades()
-      .subscribe((res: any) => {
-        this.data = res.dados;
-        this.dtTrigger.next();
-      });
+      .subscribe(
+        (res: any) => {
+          this.data = res.dados;
+          this.dtTrigger.next();
+        },
+
+        (erro) => {
+          this.error2 = [{ erro: erro.error }];
+        }
+      );
   }
 
   cadastrarcidade() {
@@ -64,9 +71,16 @@ export class CidadeComponent implements OnInit, OnDestroy {
   }
 
   deletar(id: number): void {
-    this.service.deletarcidade(id).subscribe(() => {
-      location.reload();
-    });
+    this.service.deletarcidade(id)
+      .subscribe(
+        () => { },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        },
+
+        () => { location.reload(); }
+      );
   }
 
   ngOnDestroy(): void {

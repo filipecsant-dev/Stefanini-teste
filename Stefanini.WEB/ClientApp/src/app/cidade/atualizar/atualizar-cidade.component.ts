@@ -23,9 +23,13 @@ export class AtualizarCidadeComponent implements OnInit {
     const id = Number(this.activatedRouter.snapshot.paramMap.get('id'));
 
     this.service.buscarcidade(id)
-      .subscribe((res: any) => {
-        this.cidade = res.dados;
-      });
+      .subscribe(
+        (res: any) => { this.cidade = res.dados; },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        }
+      );
   }
 
   atualizarcidade() {
@@ -43,11 +47,16 @@ export class AtualizarCidadeComponent implements OnInit {
       return;
     }
 
-    console.log(this.cidade);
-    this.service.atualizarcidade(this.meuid, this.cidade).subscribe((res) => {
-      location.reload();
-      
-    });
+    this.service.atualizarcidade(this.meuid, this.cidade)
+      .subscribe(
+        () => { },
+
+        (erro) => {
+          this.error = [{ erro: erro.error }];
+        },
+
+        () => { location.reload(); }
+      );
   }
 }
 
