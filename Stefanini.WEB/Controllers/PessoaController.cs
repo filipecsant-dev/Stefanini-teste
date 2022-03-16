@@ -134,7 +134,7 @@ namespace Stefanini_teste.Controllers
                         var result = PessoaRN.Atualizar(pessoa);
 
                         if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
-                            return Ok(result.Msg);
+                            return Ok(Json(result.Msg));
                         else
                             return BadRequest(result.Msg);
                     }

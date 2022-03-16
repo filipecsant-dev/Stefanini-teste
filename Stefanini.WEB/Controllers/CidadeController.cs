@@ -123,7 +123,7 @@ namespace Stefanini_teste.Controllers
                     var result = CidadeRN.Atualizar(cidade);
 
                     if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
-                        return Ok(result.Msg);
+                        return Ok(Json(result.Msg));
                     else
                         return BadRequest(result.Msg);
                 }
