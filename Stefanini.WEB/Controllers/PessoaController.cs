@@ -32,6 +32,7 @@ namespace Stefanini_teste.Controllers
                     {
                         PessoaDTO pessoa = _mapper.Map<PessoaDTO>(_pessoa);
                         pessoa.Id_Cidade = cidade.Id;
+                        pessoa.Cidade = null;
                         var result = PessoaRN.Create(pessoa);
 
                         if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
