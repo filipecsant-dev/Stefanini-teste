@@ -29,4 +29,12 @@ export class AppService {
     return this.http.delete(`${this.pessoaurl}/${id}`);
   }
 
+  buscarpessoa(id: number) {
+    return this.http.get<any>(`${this.pessoaurl}/${id}`);
+  }
+
+  atualizarpessoa(id: number, pessoa: any) {
+    return this.http.put(`${this.pessoaurl}/${id}`, pessoa);
+  }
+
 }

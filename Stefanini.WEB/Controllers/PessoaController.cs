@@ -21,16 +21,17 @@ namespace Stefanini_teste.Controllers
         }
 
         [HttpPost]
-        public IActionResult Inserir(PessoaVM _pessoa)
+        public IActionResult Inserir(PessoaInsertVM _pessoa)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var existeCidade = CidadeRN.FindOne(x => x.Id == _pessoa.Id_Cidade);
-                    if (existeCidade != null)
+                    var cidade = CidadeRN.FindOne(x => x.UF == _pessoa.Cidade.UF && x.Nome == _pessoa.Cidade.Nome);
+                    if (cidade != null)
                     {
                         PessoaDTO pessoa = _mapper.Map<PessoaDTO>(_pessoa);
+                        pessoa.Id_Cidade = cidade.Id;
                         var result = PessoaRN.Create(pessoa);
 
                         if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
@@ -75,7 +76,7 @@ namespace Stefanini_teste.Controllers
             }
         }
 
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         public IActionResult ReadOne(int id)
         {
             try
@@ -116,21 +117,31 @@ namespace Stefanini_teste.Controllers
             }
         }
 
-        [HttpPut("id:int")]
-        public IActionResult Update(int id, PessoaVM _pessoa)
+        [HttpPut("{id:int}")]
+        public IActionResult Update(int id, PessoaInsertVM _pessoa)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    PessoaDTO pessoa = _mapper.Map<PessoaDTO>(_pessoa);
-                    pessoa.Id = id;
-                    var result = PessoaRN.Atualizar(pessoa);
+                    var cidade = CidadeRN.FindOne(x => x.UF == _pessoa.Cidade.UF && x.Nome == _pessoa.Cidade.Nome);
+                    if (cidade != null)
+                    {
+                        PessoaDTO pessoa = _mapper.Map<PessoaDTO>(_pessoa);
+                        pessoa.Id = id;
+                        pessoa.Id_Cidade = cidade.Id;
+                        pessoa.Cidade = cidade;
+                        var result = PessoaRN.Atualizar(pessoa);
 
-                    if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
-                        return Ok(result.Msg);
+                        if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
+                            return Ok(result.Msg);
+                        else
+                            return BadRequest(result.Msg);
+                    }
                     else
-                        return BadRequest(result.Msg);
+                    {
+                        return BadRequest("Cidade não existe!");
+                    }
                 }
                 else
                 {

@@ -1,0 +1,38 @@
+
+<h2>Atualizar Pessoa</h2>
+<hr />
+
+<form>
+
+  <div style="display: flex; flex-direction: row; margin-top: 30px">
+    <div style="width:30%;">
+      <label><small>Nome</small></label>
+      <input type="text" class="form-control" placeholder="Insira o nome.." name="nome" [(ngModel)]="pessoa.nome" required>
+    </div>
+
+    <div style="margin-left: 5%; width:30%;">
+      <label><small>CPF</small></label>
+      <input type="text" class="form-control" placeholder="Insira o CPF.." name="cpf" [(ngModel)]="pessoa.cpf" required>
+    </div>
+
+    <div style="margin-left: 5%; width: 30%;">
+      <label><small>Idade</small></label>
+      <input type="text" class="form-control" placeholder="Insira a idade.." name="idade" [(ngModel)]="pessoa.idade" required>
+    </div>
+
+    <div style="margin-left: 5%; width: 30%;">
+      <label><small>Estado</small></label>
+      <input type="text" class="form-control" placeholder="Insira o Estado.." name="pessoa.cidade.uf" [(ngModel)]="pessoa.cidade.uf" required>
+    </div>
+
+    <div style="margin-left: 5%; width: 30%;">
+      <label><small>Cidade</small></label>
+      <input type="text" class="form-control" placeholder="Insira o Estado.." name="pessoa.cidade.nome" [(ngModel)]="pessoa.cidade.nome" required>
+    </div>
+
+
+  </div>
+
+
+  <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px" (click)="atualizarpessoa()">Atualizar</button>
+</form>

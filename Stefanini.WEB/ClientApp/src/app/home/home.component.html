@@ -23,7 +23,8 @@
       <td>{{ p.idade }}</td>
       <td>{{ p.cidade.nome }}</td>
       <td>{{ p.cidade.uf }}</td>
-      <td><button class="btn btn-danger" [swal]="{
+      <td>
+        <button class="btn btn-danger" [swal]="{
                   title: 'Excluir',
                   text: 'Tem certeza que deseja excluir a pessoa ' + p.nome + '?',
                   showDenyButton: true,
@@ -32,7 +33,11 @@
                   confirmButtonColor: '#B22222',
                   denyButtonColor: '#808080',
                   icon: 'warning'
-                 }" (confirm)="deletar(p.id)">Excluir</button></td>
+                 }" (confirm)="deletar(p.id)">Excluir</button>
+
+        <button class="btn btn-warning" style="margin-left: 10px; color:#fff;" routerLink="/pessoa/atualizar/{{p.id}}">Atualizar</button>
+
+      </td>
     </tr>
   </tbody>
 </table>
@@ -48,22 +53,27 @@
   <div style="display: flex; flex-direction: row; margin-top: 30px">
     <div style="width:30%;">
       <label><small>Nome</small></label>
-      <input type="text" class="form-control" placeholder="Insira o nome.." name="nome" [(ngModel)]="pessoa.nome" required>
+      <input type="text" class="form-control" placeholder="Insira o nome.." name="pessoa.nome" [(ngModel)]="pessoa.nome" required>
     </div>
 
     <div style="margin-left: 5%; width:30%;">
       <label><small>CPF</small></label>
-      <input type="text" class="form-control" placeholder="Insira o CPF.." name="cpf" [(ngModel)]="pessoa.cpf" required>
+      <input type="text" class="form-control" placeholder="Insira o CPF.." name="pessoa.cpf" [(ngModel)]="pessoa.cpf" required>
     </div>
 
     <div style="margin-left: 5%; width: 30%;">
       <label><small>Idade</small></label>
-      <input type="text" class="form-control" placeholder="Insira a idade.." name="idade" [(ngModel)]="pessoa.idade" required>
+      <input type="text" class="form-control" placeholder="Insira a idade.." name="pessoa.idade" [(ngModel)]="pessoa.idade" required>
+    </div>
+
+    <div style="margin-left: 5%; width: 30%;">
+      <label><small>Estado</small></label>
+      <input type="text" class="form-control" placeholder="Insira o Estado.." name="pessoa.cidade.u" [(ngModel)]="pessoa.cidade.uf" required>
     </div>
 
     <div style="margin-left: 5%; width: 30%;">
       <label><small>Cidade</small></label>
-      <input type="text" class="form-control" placeholder="Insira a cidade.." name="id_Cidade" [(ngModel)]="pessoa.id_Cidade" required>
+      <input type="text" class="form-control" placeholder="Insira a cidade.." name="pessoa.cidade.nome" [(ngModel)]="pessoa.cidade.nome" required>
     </div>
 
   </div>

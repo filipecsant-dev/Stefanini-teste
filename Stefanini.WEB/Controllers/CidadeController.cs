@@ -68,7 +68,7 @@ namespace Stefanini_teste.Controllers
             }
         }
 
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         public IActionResult ReadOne(int id)
         {
             try
@@ -111,7 +111,7 @@ namespace Stefanini_teste.Controllers
         }
 
         //Update
-        [HttpPut("id:int")]
+        [HttpPut("{id:int}")]
         public IActionResult Update(int id, CidadeVM _cidade)
         {
             try

@@ -10,6 +10,12 @@ namespace Stefanini.WEB.AutoMapper
         {
             CreateMap<PessoaDTO, PessoaVM>();
             CreateMap<PessoaVM, PessoaDTO>();
+
+            CreateMap<PessoaDTO, PessoaInsertVM>();
+            CreateMap<PessoaInsertVM, PessoaDTO>();
+
+            CreateMap<PessoaVM, PessoaInsertVM>();
+            CreateMap<PessoaInsertVM, PessoaVM>();
         }
     }
 }

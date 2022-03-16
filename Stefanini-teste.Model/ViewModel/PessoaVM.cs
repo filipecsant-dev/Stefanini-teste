@@ -39,4 +39,18 @@ namespace Stefanini.Model.ViewModel
 
         public CidadeReadVM Cidade { get; set; }
     }
+
+    public class PessoaInsertVM
+    {
+        public string Nome { get; set; }
+
+        public string CPF { get; set; }
+
+        public int Idade { get; set; }
+
+        public int Id_Cidade { get; set; }
+
+        public CidadeDTO Cidade { get; set; }
+
+    }
 }

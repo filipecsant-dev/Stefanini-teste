@@ -10,7 +10,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   data: any[] = [];
-  pessoa: any = {};
+  pessoa: Pessoa = {
+    nome: "",
+    idade: 0,
+    cpf: "",
+    cidade: {
+      nome: "",
+      uf: ""
+    }
+  };
 
   constructor(private service: AppService) { }
 
@@ -33,7 +41,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.service.cadastrarpessoa(this.pessoa).subscribe((res: any) => {
       location.reload();
 
-      this.pessoa = {};
     });
   }
 
@@ -47,4 +54,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
+}
+
+interface Pessoa {
+  nome: string;
+  idade: number;
+  cpf: string;
+  cidade: Cidade;
+}
+
+interface Cidade {
+  nome: string;
+  uf: string;
 }

@@ -19,6 +19,7 @@ namespace Stefanini.Business
                 bool result = false;
                 var consult = FindOne(x => x.Nome == _pessoa.Nome || x.CPF == _pessoa.CPF && x.IsDisabled == false);
 
+
                 if (consult == null)
                 {
                     using (var uow = new UOW())
