@@ -32,27 +32,31 @@
 <h5>Cadastrar Pessoa</h5>
 <br />
 
-<form style="display: flex; flex-direction: column;">
+<form >
 
   <div style="display: flex; flex-direction: row; margin-top: 30px">
     <div style="width:30%;">
       <label><small>Nome</small></label>
-      <input type="text" class="form-control" name="nome">
+      <input type="text" class="form-control" placeholder="Insira o nome.." name="nome" [(ngModel)]="pessoa.nome" required>
     </div>
 
     <div style="margin-left: 5%; width:30%;">
       <label><small>CPF</small></label>
-      <input type="text" class="form-control" name="cpf">
+      <input type="text" class="form-control" placeholder="Insira o CPF.." name="cpf" [(ngModel)]="pessoa.cpf" required>
     </div>
 
     <div style="margin-left: 5%; width: 30%;">
       <label><small>Idade</small></label>
-      <input type="text" class="form-control" name="idade">
+      <input type="text" class="form-control" placeholder="Insira a idade.." name="idade" [(ngModel)]="pessoa.idade" required>
+    </div>
+
+    <div style="margin-left: 5%; width: 30%;">
+      <label><small>Cidade</small></label>
+      <input type="text" class="form-control" placeholder="Insira a cidade.." name="id_Cidade" [(ngModel)]="pessoa.id_Cidade" required>
     </div>
 
   </div>
 
 
-  <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px">Cadastrar</button>
+  <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px" (click)="cadastrarpessoa()">Cadastrar</button>
 </form>
-

@@ -27,16 +27,24 @@ namespace Stefanini_teste.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    PessoaDTO pessoa = _mapper.Map<PessoaDTO>(_pessoa);
-                    var result = PessoaRN.Create(pessoa);
-
-                    if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
+                    var existeCidade = CidadeRN.FindOne(x => x.Id == _pessoa.Id_Cidade);
+                    if (existeCidade != null)
                     {
-                        return Ok();
+                        PessoaDTO pessoa = _mapper.Map<PessoaDTO>(_pessoa);
+                        var result = PessoaRN.Create(pessoa);
+
+                        if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
+                        {
+                            return Ok(Json(new { _pessoa }));
+                        }
+                        else
+                        {
+                            return BadRequest(result.Msg);
+                        }
                     }
                     else
                     {
-                        return BadRequest(result.Msg);
+                        return BadRequest("Cidade não existe!");
                     }
                 }
                 else
@@ -53,23 +61,6 @@ namespace Stefanini_teste.Controllers
 
         }
 
-        /// <summary>
-        ///    { 
-        ///       "dados": [
-        ///         {
-        ///             "id": 0,
-        ///             "nome": "nome",
-        ///             "cpf": "999.999.999-99",
-        ///             "idade": 0,
-        ///             "cidade":
-        ///                 "id": 0,
-        ///                 "nome": "nome",
-        ///                 "uf": "uf"
-        ///         }
-        ///       ]
-        ///     }
-        /// </summary>
-        /// <response code="200">Requisição bem sucedida.</response>
         [HttpGet]
         public IActionResult ReadAll()
         {

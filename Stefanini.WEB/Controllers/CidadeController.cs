@@ -32,7 +32,7 @@ namespace Stefanini_teste.Controllers
 
                     if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
                     {
-                        return Ok();
+                        return Ok(Json(new { _cidade }));
                     }
                     else
                     {

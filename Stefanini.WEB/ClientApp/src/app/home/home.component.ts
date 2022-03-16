@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../service';
-import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -8,14 +7,14 @@ import { Subject } from 'rxjs';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public dtOptions: DataTables.Settings = {};
-  public dtTrigger: Subject<any> = new Subject<any>();
-  public data: any;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  data: any[] = [];
+  pessoa: any = {};
 
   constructor(private service: AppService) { }
 
   ngOnInit(): void {
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -28,6 +27,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.data = res.dados;
         this.dtTrigger.next();
       });
+  }
+
+  cadastrarpessoa() {
+    this.service.cadastrarpessoa(this.pessoa).subscribe((res: any) => {
+      location.reload();
+
+      this.pessoa = {};
+    });
   }
 
   ngOnDestroy(): void {

@@ -78,13 +78,17 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo-proxy-angular:build",
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "Stefanini.WEB:build:production"
             },
             "development": {
               "browserTarget": "Stefanini.WEB:build:development",
-              "proxyConfig": "proxy.conf.js"
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

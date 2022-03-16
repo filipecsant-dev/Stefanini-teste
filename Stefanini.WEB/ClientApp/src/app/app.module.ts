@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 import { DataTablesModule } from "angular-datatables";
+import { AppService } from './service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { DataTablesModule } from "angular-datatables";
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
