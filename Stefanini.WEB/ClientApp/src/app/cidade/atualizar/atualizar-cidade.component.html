@@ -1,0 +1,23 @@
+
+<h2>Atualizar Cidade</h2>
+<hr />
+
+<form>
+
+  <div style="display: flex; flex-direction: row; margin-top: 30px">
+    <div style="width:30%;">
+      <label><small>Estado</small></label>
+      <input type="text" class="form-control" placeholder="Insira o estado.." name="cidade.uf" [(ngModel)]="cidade.uf" required>
+    </div>
+
+    <div style="margin-left: 5%; width:30%;">
+      <label><small>Cidade</small></label>
+      <input type="text" class="form-control" placeholder="Insira a cidade.." name="cidade.nome" [(ngModel)]="cidade.nome" required>
+    </div>
+
+
+  </div>
+
+
+  <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px" (click)="atualizarcidade()">Atualizar</button>
+</form>

@@ -14,9 +14,11 @@ export class AppService {
   };
 
   pessoaurl = 'api/pessoa';
+  cidadeurl = "api/cidade"
 
   constructor(private http: HttpClient) { }
 
+  //Pessoa
   listarpessoas() {
     return this.http.get<any>(this.pessoaurl);
   }
@@ -35,6 +37,27 @@ export class AppService {
 
   atualizarpessoa(id: number, pessoa: any) {
     return this.http.put(`${this.pessoaurl}/${id}`, pessoa);
+  }
+
+  //Cidade
+  listarcidades() {
+    return this.http.get<any>(this.cidadeurl);
+  }
+
+  cadastrarcidade(pessoa: any) {
+    return this.http.post(this.cidadeurl, pessoa, this.httpOptions);
+  }
+
+  deletarcidade(id: number) {
+    return this.http.delete(`${this.cidadeurl}/${id}`);
+  }
+
+  buscarcidade(id: number) {
+    return this.http.get<any>(`${this.cidadeurl}/${id}`);
+  }
+
+  atualizarcidade(id: number, cidade: any) {
+    return this.http.put(`${this.cidadeurl}/${id}`, cidade);
   }
 
 }

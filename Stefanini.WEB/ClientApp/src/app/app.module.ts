@@ -9,6 +9,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AtualizarPessoaComponent } from './home/atualizar/atualizar-pessoa.component';
+import { CidadeComponent } from './cidade/cidade.component';
+import { AtualizarCidadeComponent } from './cidade/atualizar/atualizar-cidade.component';
 
 import { AppService } from './service';
 
@@ -21,7 +23,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     NavMenuComponent,
     HomeComponent,
     FetchDataComponent,
-    AtualizarPessoaComponent
+    AtualizarPessoaComponent,
+    CidadeComponent,
+    AtualizarCidadeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,6 +37,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'pessoa/atualizar/:id', component: AtualizarPessoaComponent },
+      { path: 'cidade', component: CidadeComponent },
+      { path: 'cidade/atualizar/:id', component: AtualizarCidadeComponent },
     ])
   ],
   providers: [AppService],
