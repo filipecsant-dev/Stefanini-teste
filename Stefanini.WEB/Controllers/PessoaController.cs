@@ -21,7 +21,7 @@ namespace Stefanini_teste.Controllers
         }
 
         [HttpPost]
-        public IActionResult Inserir(PessoaInsertVM _pessoa)
+        public ActionResult<PessoaInsertVM> Inserir(PessoaInsertVM _pessoa)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace Stefanini_teste.Controllers
 
                         if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
                         {
-                            return Ok(Json(new { _pessoa }));
+                            return CreatedAtAction("Pessoa", new { id = pessoa.Id }, pessoa);
                         }
                         else
                         {
@@ -64,7 +64,7 @@ namespace Stefanini_teste.Controllers
         }
 
         [HttpGet]
-        public IActionResult ReadAll()
+        public ActionResult<PessoaReadVM> ReadAll()
         {
             try
             {
@@ -78,7 +78,7 @@ namespace Stefanini_teste.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult ReadOne(int id)
+        public ActionResult<PessoaReadVM> ReadOne(int id)
         {
             try
             {

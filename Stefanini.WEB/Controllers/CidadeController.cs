@@ -21,7 +21,7 @@ namespace Stefanini_teste.Controllers
 
         //Create
         [HttpPost]
-        public IActionResult Inserir(CidadeVM _cidade)
+        public ActionResult<CidadeVM> Inserir(CidadeVM _cidade)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace Stefanini_teste.Controllers
 
                     if (result.Status == Stefanini.Model.Enums.StatusCrud.Sucesso)
                     {
-                        return Ok(Json(new { _cidade }));
+                        return CreatedAtAction("Cidade", new { id = cidade.Id }, cidade);
                     }
                     else
                     {
@@ -55,7 +55,7 @@ namespace Stefanini_teste.Controllers
 
         [HttpGet]
         //Read
-        public IActionResult ReadAll()
+        public ActionResult<CidadeDTO> ReadAll()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Stefanini_teste.Controllers
 
         [HttpGet("carregarcidades/{uf}")]
         //Read
-        public IActionResult ReadAll(string uf)
+        public ActionResult<CidadeDTO> ReadAll(string uf)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Stefanini_teste.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult ReadOne(int id)
+        public ActionResult<CidadeDTO> ReadOne(int id)
         {
             try
             {
