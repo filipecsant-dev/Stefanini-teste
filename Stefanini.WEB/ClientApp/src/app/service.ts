@@ -25,4 +25,8 @@ export class AppService {
     return this.http.post(this.pessoaurl, pessoa, this.httpOptions);
   }
 
+  deletarpessoa(id: number) {
+    return this.http.delete(`${this.pessoaurl}/${id}`);
+  }
+
 }

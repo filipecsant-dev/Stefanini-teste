@@ -13,6 +13,7 @@
       <th>Idade</th>
       <th>Estado</th>
       <th>Cidade</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,16 @@
       <td>{{ p.idade }}</td>
       <td>{{ p.cidade.nome }}</td>
       <td>{{ p.cidade.uf }}</td>
+      <td><button class="btn btn-danger" [swal]="{
+                  title: 'Excluir',
+                  text: 'Tem certeza que deseja excluir a pessoa ' + p.nome + '?',
+                  showDenyButton: true,
+                  denyButtonText: 'Cancelar',
+                  confirmButtonText: 'Confirmar',
+                  confirmButtonColor: '#B22222',
+                  denyButtonColor: '#808080',
+                  icon: 'warning'
+                 }" (confirm)="deletar(p.id)">Excluir</button></td>
     </tr>
   </tbody>
 </table>

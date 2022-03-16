@@ -37,6 +37,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  deletar(id: number): void {
+    this.service.deletarpessoa(id).subscribe(() => {
+      location.reload();
+    });
+  }
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
