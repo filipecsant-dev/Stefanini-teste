@@ -1,6 +1,40 @@
 <h2>Olá!</h2>
 <h4>Bem vindo ao Teste de Stefanini.</h4>
 <hr />
+<button class="btn btn-primary" (click)="showList = !showList">{{showList ? 'Cadastar Cidade' : 'Ocultar Cadastro'}}</button>
+<br />
+<hr />
+
+<div *ngIf="!showList">
+  <br />
+  <h5>Cadastrar Cidade</h5>
+  <div *ngFor="let e of error">
+    <li style="color: #ff0000;">{{e.erro}}</li>
+  </div>
+
+  <form>
+
+    <div style="display: flex; flex-direction: row; margin-top: 30px">
+      <div style="width:30%;">
+        <label><small>Estado</small></label>
+        <input type="text" class="form-control" placeholder="Insira o estado.." name="cidade.uf" [(ngModel)]="cidade.uf" required>
+      </div>
+
+      <div style="margin-left: 5%; width:30%;">
+        <label><small>Cidade</small></label>
+        <input type="text" class="form-control" placeholder="Insira a cidade.." name="pessoa.nome" [(ngModel)]="cidade.nome" required>
+      </div>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px" (click)="cadastrarcidade()">Cadastrar</button>
+  </form><br />
+  <hr />
+  <br /><br />
+</div>
+
+
 
 <h5>Cidades cadastradas</h5>
 <br />
@@ -27,7 +61,9 @@
                   confirmButtonColor: '#B22222',
                   denyButtonColor: '#808080',
                   icon: 'warning'
-                 }" (confirm)="deletar(c.id)">Excluir</button>
+                 }" (confirm)="deletar(c.id)">
+          Excluir
+        </button>
 
         <button class="btn btn-warning" style="margin-left: 10px; color:#fff;" routerLink="/cidade/atualizar/{{c.id}}">Atualizar</button>
 
@@ -35,28 +71,8 @@
     </tr>
   </tbody>
 </table>
-
 <br />
 <br />
-<hr />
-<h5>Cadastrar Cidade</h5>
 <br />
 
-<form >
 
-  <div style="display: flex; flex-direction: row; margin-top: 30px">
-    <div style="width:30%;">
-      <label><small>Estado</small></label>
-      <input type="text" class="form-control" placeholder="Insira o estado.." name="cidade.uf" [(ngModel)]="cidade.uf" required>
-    </div>
-
-    <div style="margin-left: 5%; width:30%;">
-      <label><small>Cidade</small></label>
-      <input type="text" class="form-control" placeholder="Insira a cidade.." name="pessoa.nome" [(ngModel)]="cidade.nome" required>
-    </div>
-
-  </div>
-
-
-  <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px" (click)="cadastrarcidade()">Cadastrar</button>
-</form>

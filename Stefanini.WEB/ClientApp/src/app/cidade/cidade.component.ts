@@ -10,6 +10,8 @@ export class CidadeComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   data: any[] = [];
+  error: any[] = [];
+  showList = true;
   cidade: Cidade = {
     id: 0,
     nome: "",
@@ -34,6 +36,21 @@ export class CidadeComponent implements OnInit, OnDestroy {
   }
 
   cadastrarcidade() {
+    if (this.cidade.uf.length > 2 || this.cidade.uf.length < 1) {
+      this.error = [{ erro: "Informe o UF do estado válido." }];
+      return;
+    }
+
+    if (this.cidade.nome.length > 200) {
+      this.error = [{ erro: "Nome muito longo!" }];
+      return;
+    }
+    if (this.cidade.nome.length < 3) {
+      this.error = [{ erro: "Nome muito curto!" }];
+      return;
+    }
+
+
     this.service.cadastrarcidade(this.cidade).subscribe((res: any) => {
       location.reload();
 

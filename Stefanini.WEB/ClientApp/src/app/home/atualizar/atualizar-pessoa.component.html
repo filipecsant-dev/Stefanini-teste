@@ -2,6 +2,10 @@
 <h2>Atualizar Pessoa</h2>
 <hr />
 
+<div *ngFor="let e of error">
+  <li style="color: #ff0000;">{{e.erro}}</li>
+</div>
+
 <form>
 
   <div style="display: flex; flex-direction: row; margin-top: 30px">

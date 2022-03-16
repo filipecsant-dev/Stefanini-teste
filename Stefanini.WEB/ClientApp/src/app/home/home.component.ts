@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   data: any[] = [];
+  showList = true;
+  error: any[] = [];
   pessoa: Pessoa = {
     nome: "",
     idade: 0,
@@ -19,6 +21,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       uf: ""
     }
   };
+
+
+ 
 
   constructor(private service: AppService) { }
 
@@ -38,17 +43,36 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   cadastrarpessoa() {
-    this.service.cadastrarpessoa(this.pessoa).subscribe((res: any) => {
-      location.reload();
+    if (this.pessoa.nome.length > 300) {
+      this.error = [{ erro: "Nome muito longo!" }];
+      return;
+    }
+    if (this.pessoa.nome.length < 5) {
+      this.error = [{ erro: "Nome muito curto." }];
+      return;
+    }
+    if (this.pessoa.cpf.length != 11) {
+      this.error = [{ erro: "CPF inválido!" }];
+      return;
+    }
+    if (this.pessoa.idade < 1) {
+      this.error = [{ erro: "Informe um idade válida!" }];
+      return;
+    }
+    
 
+    this.service.cadastrarpessoa(this.pessoa).subscribe((res) => {
+      location.reload();
     });
   }
 
   deletar(id: number): void {
     this.service.deletarpessoa(id).subscribe(() => {
       location.reload();
+      
     });
   }
+
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();

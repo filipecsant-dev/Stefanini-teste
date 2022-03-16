@@ -1,30 +1,77 @@
 <h2>Olá!</h2>
 <h4>Bem vindo ao Teste de Stefanini.</h4>
 <hr />
-
-<h5>Pessoas cadastradas</h5>
+<button class="btn btn-primary" (click)="showList = !showList">{{showList ? 'Cadastar Pessoa' : 'Ocultar Cadastro'}}</button>
 <br />
+<hr />
 
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>CPF</th>
-      <th>Idade</th>
-      <th>Estado</th>
-      <th>Cidade</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of data">
-      <td>{{ p.nome }}</td>
-      <td>{{ p.cpf }}</td>
-      <td>{{ p.idade }}</td>
-      <td>{{ p.cidade.nome }}</td>
-      <td>{{ p.cidade.uf }}</td>
-      <td>
-        <button class="btn btn-danger" [swal]="{
+<div *ngIf="!showList">
+  <br />
+  <h5>Cadastrar Pessoa</h5>
+  <div *ngFor="let e of error">
+    <li style="color: #ff0000;">{{e.erro}}</li>
+  </div>
+
+  <form>
+
+    <div style="display: flex; flex-direction: row; margin-top: 30px">
+      <div style="width:30%;">
+        <label><small>Nome</small></label>
+        <input type="text" class="form-control" placeholder="Insira o nome.." name="pessoa.nome" [(ngModel)]="pessoa.nome" required>
+      </div>
+
+      <div style="margin-left: 5%; width:30%;">
+        <label><small>CPF</small></label>
+        <input type="text" class="form-control" placeholder="Insira o CPF.." name="pessoa.cpf" [(ngModel)]="pessoa.cpf" required>
+      </div>
+
+      <div style="margin-left: 5%; width: 30%;">
+        <label><small>Idade</small></label>
+        <input type="text" class="form-control" placeholder="Insira a idade.." name="pessoa.idade" [(ngModel)]="pessoa.idade" required>
+      </div>
+
+      <div style="margin-left: 5%; width: 30%;">
+        <label><small>Estado</small></label>
+        <input type="text" class="form-control" placeholder="Insira o Estado.." name="pessoa.cidade.u" [(ngModel)]="pessoa.cidade.uf" required>
+      </div>
+
+      <div style="margin-left: 5%; width: 30%;">
+        <label><small>Cidade</small></label>
+        <input type="text" class="form-control" placeholder="Insira a cidade.." name="pessoa.cidade.nome" [(ngModel)]="pessoa.cidade.nome" required>
+      </div>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px" (click)="cadastrarpessoa()">Cadastrar</button>
+  </form><br />
+  <hr />
+  <br /><br />
+</div>
+
+  <h5>Pessoas cadastradas</h5>
+  <br />
+
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Idade</th>
+        <th>Estado</th>
+        <th>Cidade</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of data">
+        <td>{{ p.nome }}</td>
+        <td>{{ p.cpf }}</td>
+        <td>{{ p.idade }}</td>
+        <td>{{ p.cidade.nome }}</td>
+        <td>{{ p.cidade.uf }}</td>
+        <td>
+          <button class="btn btn-danger" [swal]="{
                   title: 'Excluir',
                   text: 'Tem certeza que deseja excluir a pessoa ' + p.nome + '?',
                   showDenyButton: true,
@@ -33,51 +80,14 @@
                   confirmButtonColor: '#B22222',
                   denyButtonColor: '#808080',
                   icon: 'warning'
-                 }" (confirm)="deletar(p.id)">Excluir</button>
+                 }" (confirm)="deletar(p.id)">
+            Excluir
+          </button>
 
-        <button class="btn btn-warning" style="margin-left: 10px; color:#fff;" routerLink="/pessoa/atualizar/{{p.id}}">Atualizar</button>
+          <button class="btn btn-warning" style="margin-left: 10px; color:#fff;" routerLink="/pessoa/atualizar/{{p.id}}">Atualizar</button>
 
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<br />
-<br />
-<hr />
-<h5>Cadastrar Pessoa</h5>
-<br />
-
-<form >
-
-  <div style="display: flex; flex-direction: row; margin-top: 30px">
-    <div style="width:30%;">
-      <label><small>Nome</small></label>
-      <input type="text" class="form-control" placeholder="Insira o nome.." name="pessoa.nome" [(ngModel)]="pessoa.nome" required>
-    </div>
-
-    <div style="margin-left: 5%; width:30%;">
-      <label><small>CPF</small></label>
-      <input type="text" class="form-control" placeholder="Insira o CPF.." name="pessoa.cpf" [(ngModel)]="pessoa.cpf" required>
-    </div>
-
-    <div style="margin-left: 5%; width: 30%;">
-      <label><small>Idade</small></label>
-      <input type="text" class="form-control" placeholder="Insira a idade.." name="pessoa.idade" [(ngModel)]="pessoa.idade" required>
-    </div>
-
-    <div style="margin-left: 5%; width: 30%;">
-      <label><small>Estado</small></label>
-      <input type="text" class="form-control" placeholder="Insira o Estado.." name="pessoa.cidade.u" [(ngModel)]="pessoa.cidade.uf" required>
-    </div>
-
-    <div style="margin-left: 5%; width: 30%;">
-      <label><small>Cidade</small></label>
-      <input type="text" class="form-control" placeholder="Insira a cidade.." name="pessoa.cidade.nome" [(ngModel)]="pessoa.cidade.nome" required>
-    </div>
-
-  </div>
-
-
-  <button type="submit" class="btn btn-primary" style=" width:8%;margin-top:30px" (click)="cadastrarpessoa()">Cadastrar</button>
-</form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br /><br /><br />
